@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="18dp" >
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        app:endIconMode="password_toggle" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editextPin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukan 6 Angka Pin "
+            android:inputType="numberPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        app:endIconMode="password_toggle" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editextConfirmPin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Konfirmasi PIN Anda "
+            android:inputType="numberPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.poovam.pinedittextfield.SquarePinField
+        android:id="@+id/etPin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:inputType="numberPassword"
+        app:cornerRadius="8dp"
+        app:isCursorEnabled="false"
+        app:noOfFields="4" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Konfirmasi" />
+
+</LinearLayout>

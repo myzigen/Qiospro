@@ -1,0 +1,49 @@
+{
+  "images": {
+    "1" : {
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcNiU8OhTSK-FTJS_Eovu1bblnLPPvCnJgltn78cYYzRcM2CPlYVwvqYA&s=10",
+			"brand": "DANA",
+			"code": "DANA"
+    },
+   "2" : {
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlspQyZ1AwdaUfWjRd61axoqUtNo5rh0a8z51jM6tODtL6Cy6Y1JBSJ-8M&s=10",
+			"brand": "Go pay",
+			"code": "GOPAYB"
+    },
+    "3" : {
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0M3PG8bc4gjH4UuaexhsO3D-ab2vXO1cEK-QiHpM78bT5HPJxnr70XBv7&s=10",
+			"brand": "OVO",
+			"code": "OVO"
+    },
+   "4" : {
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReMUxazQD1HTr1N-1JbcMYQfVPK_mxkHxE-vXAU4_CXftvHhcB3q2HdOE_&s=10",
+			"brand": "Shopee Pay",
+			"code": "ShopeePay"
+    },
+   "5" : {
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlhr56ZmR2kCZ0alHZ95es-TFnyZeELzF6Cw&s",
+			"brand": "LinkAja",
+			"code": "LinkAja"
+    },
+   "6" : {
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9KNbJHf-HH8qIcXc9fqixVDd21AxA2BRcBSMPjrbu-hgJ7mcqVIoUCcE&s=10",
+			"brand": "Doku",
+			"code": "Doku"
+    },
+    "7" :{
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJXhR9HgrurycAfRxsa9eyo1Jo4-BP9bWPrQ&s",
+			"brand": "Astrapay",
+			"code": "Astrapay"
+    },
+		"8" :{
+			"imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmPBDHZnvbDd6uxyx3j4QwM2493WvZpyo_Q4bQbfXF3YVq-L0MVSUU0X5y&s=10",
+			"brand": "Isaku",
+			"code": "Astrapay"
+		},
+		"9" :{
+			"imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEDt_Pxxbeo9nFvarqUb74tYIhOrjnpilXlQ&s",
+			"brand": "KasPro",
+			"code": "Astrapay"
+		}
+  }
+}

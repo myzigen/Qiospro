@@ -1,0 +1,393 @@
+static String USER_NAME = "089525410716";
+  static String KEY = "665673a451e6ff89nTx0";
+  static String KEY_DEV = "251673a44d1df3dfB9Jk";
+  static String URL1 = "https://mobilepulsa.net/api/v1/bill/check";
+  static String URL2 = "https://prepaid.iak.dev/api/inquiry-pln";
+  static String URL3 = "https://prepaid.iak.id/api/check-balance";
+  
+  
+         			    /* CEK TAGIHAN INTERNET *\
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.MessageDigest;
+
+public class App {
+    public static void main(String[] args) {
+        String endpoint = "https://mobilepulsa.net/api/v1/bill/check";
+        String username = "089525410716"; // Ganti dengan nomor telepon Anda yang terdaftar
+        String apiKey = "665673a451e6ff89nTx0"; // Ganti dengan API Key Anda
+        String refId = generateRefId(); // Harus unik untuk setiap transaksi
+        String code = "SHOPEEPAY"; // Kode produk
+        String hp = "083168612666"; // Nomor tujuan
+        int amount = 10000; // Nominal custom
+
+        try {
+            // Generate Signature
+            String sign = generateSignature(username, apiKey, refId);
+
+            // JSON Payload
+            String requestPayload = String.format(
+                "{ \"commands\": \"inq-pasca\", \"username\": \"%s\", \"code\": \"%s\", \"hp\": \"%s\", \"ref_id\": \"%s\", \"sign\": \"%s\", \"desc\": { \"amount\": %d } }",
+                username, code, hp, refId, sign, amount
+            );
+
+            // Setup HttpURLConnection
+            URL url = new URL(endpoint);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            // Send Request
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = requestPayload.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            // Read Response
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                try (BufferedReader br = new BufferedReader(
+                        new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                    StringBuilder response = new StringBuilder();
+                    String responseLine;
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+                    System.out.println("Response: " + response.toString());
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+	
+	public static String generateRefId(){
+		return "TX" + System.currentTimeMillis();
+	}
+
+    // Generate MD5 Signature
+    public static String generateSignature(String username, String apiKey, String refId) {
+        try {
+            String input = username + apiKey + refId;
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hash = md.digest(input.getBytes("UTF-8"));
+
+            // Convert to Hex
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Error generating MD5 signature", e);
+        }
+    }
+}
+
+      						  // END
+                            /* CEK SALDO *\
+                            public class App {
+
+    public static void main(String[] args) {
+        String apiUrl = "https://prepaid.iak.id/api/check-balance";
+        String username = "089525410716"; // Nomor telepon terdaftar
+        String apiKey = "665673a451e6ff89nTx0"; // Ganti dengan API key Anda
+        String command = "balance";
+
+        try {
+            // Membuat tanda tangan (MD5 hash)
+            String signInput = username + apiKey + "bl";
+            String sign = md5(signInput);
+
+            // Data JSON untuk permintaan
+            String jsonInputString = "{"
+                    + "\"commands\": \"" + command + "\","
+                    + "\"username\": \"" + username + "\","
+                    + "\"sign\": \"" + sign + "\""
+                    + "}";
+
+            // Membuka koneksi
+            URL url = new URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // Konfigurasi koneksi
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+
+            // Mengirim data
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            // Membaca tanggapan
+            int status = connection.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                try (Scanner scanner = new Scanner(connection.getInputStream(), "UTF-8")) {
+                    String responseBody = scanner.useDelimiter("\\A").next();
+                    System.out.println("Response: " + responseBody);
+                }
+            } else {
+                System.out.println("Request failed with HTTP status: " + status);
+            }
+
+            connection.disconnect();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Fungsi untuk menghasilkan MD5 hash
+    public static String md5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : messageDigest) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+								/*END*\
+                       /* DAFTAR HARGA PRABAYAR *\
+                                public class App {
+	static String USER_NAME = "089525410716";
+	static String KEY = "665673a451e6ff89nTx0";
+	
+    public static void main(String[] args) {
+        String apiUrl = "https://prepaid.iak.id/api/pricelist";
+        String username = USER_NAME; // Ganti dengan username Anda
+        String apiKey = KEY; // Ganti dengan API key Anda
+        String command = "pricelist";
+
+        try {
+            // Membuat tanda tangan (MD5 hash)
+            String signInput = username + apiKey + "pl";
+            String sign = md5(signInput);
+
+            // Data JSON untuk permintaan
+            String jsonInputString = "{"
+                    + "\"commands\": \"" + command + "\","
+                    + "\"username\": \"" + username + "\","
+                    + "\"sign\": \"" + sign + "\""
+                    + "}";
+
+            // Membuka koneksi
+            URL url = new URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // Konfigurasi koneksi
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+
+            // Mengirim data
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            // Membaca tanggapan
+            int status = connection.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                System.out.println("Response: " + response.toString());
+            } else {
+                System.out.println("Request failed with HTTP status: " + status);
+            }
+
+            connection.disconnect();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Fungsi untuk menghasilkan MD5 hash
+    public static String md5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : messageDigest) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+/* DAFTAR HARGA PASCABAYAR */
+public class App {
+    public static void main(String[] args) {
+        try {
+            String username = "089525410716";
+            String apiKey = "251673a44d1df3dfB9Jk";  // Ganti dengan API key Anda
+            String sign = md5(username + apiKey + "pl");
+            String urlString = "https://testpostpaid.mobilepulsa.net/api/v1/bill/check/internet";
+
+            // Membuat JSON Body
+            String jsonBody = "{"
+                    + "\"commands\": \"pricelist-pasca\","
+                    + "\"username\": \"" + username + "\","
+                    + "\"sign\": \"" + sign + "\","
+                    + "\"status\": \"all\""
+                    + "}";
+
+            // Membuat URL dan koneksi
+            URL url = new URL(urlString);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+
+            // Mengirimkan data JSON
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonBody.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            // Membaca respons dari API
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            BufferedReader in;
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            } else {
+                in = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+            }
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = in.readLine()) != null) {
+                response.append(line);
+            }
+            in.close();
+
+            // Menampilkan respons
+            System.out.println("Response: " + response.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Fungsi untuk membuat MD5
+    public static String md5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hashInBytes = md.digest(input.getBytes());
+
+            // Mengubah byte[] menjadi string hexadecimal
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashInBytes) {
+                hexString.append(String.format("%02x", b));
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
+
+/*END*/
+
+/* Inquiry-PLN */
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.MessageDigest;
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) {
+        String apiUrl = "https://prepaid.iak.id/api/inquiry-pln";
+        String username = "089525410716";
+        String customerId = "01115109298";
+        String apiKey = "665673a451e6ff89nTx0"; // Ganti dengan API key Anda
+
+        try {
+            // Buat signature (MD5 hash)
+            String sign = md5(username + apiKey + customerId);
+
+            // Buat JSON request body
+            String requestBody = String.format(
+                "{ \"username\": \"%s\", \"customer_id\": \"%s\", \"sign\": \"%s\" }",
+                username, customerId, sign
+            );
+
+            // Inisialisasi koneksi
+            URL url = new URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            // Kirim request body
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = requestBody.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            // Terima respon
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                try (Scanner scanner = new Scanner(connection.getInputStream(), "UTF-8")) {
+                    String response = scanner.useDelimiter("\\A").next();
+                    System.out.println("Response: " + response);
+                }
+            } else {
+                System.err.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Fungsi untuk membuat hash MD5
+    public static String md5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : messageDigest) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}

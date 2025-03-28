@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true" >
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedscroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_dashboard"
+                    android:name="com.mhr.mobile.ui.navcontent.QiosDashboardFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_menu"
+                    android:name="com.mhr.mobile.ui.navcontent.QiosKategoriMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#f5f5f5" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_slider"
+                    android:name="com.mhr.mobile.ui.navcontent.QiosHomeSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_marketplace"
+                    android:name="com.mhr.mobile.ui.navcontent.QiosMarketplace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>

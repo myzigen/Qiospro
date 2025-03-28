@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/backdrop_wave" />
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:paddingBottom="16dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:paddingTop="16dp" >
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/containerInputPln"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:clipToPadding="true"
+            android:outlineAmbientShadowColor="@color/qiospay_blue_dop"
+            android:outlineSpotShadowColor="@color/qiospay_blue_dop"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="5dp"
+            app:strokeWidth="0dp" >
+
+            <RelativeLayout
+                android:id="@+id/containerEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    app:tabIndicatorFullWidth="true"
+                    app:tabRippleColor="@android:color/transparent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInput"
+                    style="?attr/textInputOutlinedDenseStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tabLayout"
+                    android:layout_marginBottom="17dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="17dp"
+                    app:boxStrokeErrorColor="@color/status_canceled"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:endIconMode="clear_text"
+					app:placeholderTextColor="@color/colorTextLight"
+                    app:errorTextColor="@color/status_canceled"
+                    app:expandedHintEnabled="false"
+                    app:startIconScaleType="center" >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="13"
+                        android:textSize="14sp"
+                        app:endIconMode="clear_text" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <include
+            android:id="@+id/incExpand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/containerInputPln"
+            layout="@layout/expandable_check_user" />
+    </RelativeLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/container_bottom"
+        android:layout_below="@id/container" />
+
+</RelativeLayout>

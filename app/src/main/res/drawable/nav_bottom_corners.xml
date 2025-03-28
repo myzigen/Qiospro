@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Gradient Background with Rounded Corners -->
+    <item>
+        <shape>
+            <gradient
+                android:startColor="#FFFFFF"
+                android:endColor="#E5ECF6"
+                android:angle="90" /> <!-- Gradasi dari kiri ke kanan -->
+            <corners 
+                android:topLeftRadius="15dp"
+                android:topRightRadius="15dp"/>
+        </shape>
+    </item>
+
+    <!-- Shadow (White color and corners with rounded radius) -->
+    <item android:right="0dp" android:left="0dp" android:top="1.3dp" android:bottom="0dp">
+        <shape>
+            <solid android:color="@android:color/white"/>
+            <corners 
+                android:topRightRadius="15dp"
+                android:topLeftRadius="15dp"/>
+        </shape>
+    </item>
+
+</layer-list>

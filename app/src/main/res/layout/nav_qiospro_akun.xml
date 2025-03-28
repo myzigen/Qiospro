@@ -1,0 +1,242 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.mhr.mobile.widget.imageview.RoundedImageView
+                android:id="@+id/userImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="18dp"
+                android:src="@drawable/ic_no_image"
+                app:radius="8dp" />
+
+            <TextView
+                android:id="@+id/userDisplayName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/userImage"
+                android:text="Username"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/userEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/userImage"
+                android:layout_toEndOf="@id/userImage"
+                android:text="Email"
+                android:textColor="@color/colorTextLight"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/btnUserSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="18dp"
+                android:src="@drawable/setting" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:strokeColor="@color/qiospay_stroke_card" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="18dp" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground" >
+
+                    <TextView
+                        android:id="@+id/jumlahPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="0"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/jumlahPoint"
+                        android:layout_centerHorizontal="true"
+                        android:text="Poin Transaksi"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground" >
+
+                    <TextView
+                        android:id="@+id/jumlahPointDownline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="0"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/jumlahPointDownline"
+                        android:layout_centerHorizontal="true"
+                        android:text="Komisi Downline"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground" >
+
+                    <TextView
+                        android:id="@+id/jumlahDownline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="0"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/jumlahDownline"
+                        android:layout_centerHorizontal="true"
+                        android:text="Downline"
+                        android:textColor="@color/colorTextLight"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <View
+                    android:layout_width="7dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/stepper" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <View
+                    android:layout_width="7dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/stepper" />
+            </FrameLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="18dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="8dp"
+        app:strokeColor="@color/qiospay_stroke_card" >
+
+        <include
+            android:id="@+id/includeRecycler"
+            layout="@layout/qios_recyclerview" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="18dp"
+        android:textColor="@color/colorTextLight"
+        android:textSize="11sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="8dp"
+        app:strokeColor="@color/status_canceled" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="14dp"
+            android:text="Keluar Akun"
+            android:textColor="@color/status_canceled"
+            android:textStyle="bold" />
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

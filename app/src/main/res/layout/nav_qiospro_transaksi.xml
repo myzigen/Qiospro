@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <androidx.appcompat.widget.Toolbar 
+		android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+		app:menu="@menu/menu_filter"
+        app:title="Transaksi" />
+
+    <com.mhr.mobile.widget.refresh.CustomSwipeRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+				android:text="Belum Ada Riwayat Transaksi"
+				android:id="@+id/tvNoProduk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+				android:visibility="gone"
+                android:layout_centerInParent="true" />
+
+            <com.mikelau.shimmerrecyclerviewx.ShimmerRecyclerViewX
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </com.mhr.mobile.widget.refresh.CustomSwipeRefreshLayout>
+
+</LinearLayout>

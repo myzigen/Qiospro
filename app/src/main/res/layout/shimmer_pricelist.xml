@@ -1,0 +1,40 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_card"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="5dp"
+    app:strokeColor="#59E9E9E9" >
+
+    <LinearLayout
+        android:id="@+id/option6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="14dp" >
+
+        <View
+            android:id="@+id/product_name"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/corners_shimmer" />
+
+        <RelativeLayout
+            android:id="@+id/price_holder6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|right|end" >
+
+            <View
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/corners_shimmer" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

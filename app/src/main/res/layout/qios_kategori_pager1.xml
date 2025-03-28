@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:transitionGroup="true" >
+
+    <com.mikelau.shimmerrecyclerviewx.ShimmerRecyclerViewX
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        app:shimmer_demo_angle="20"
+        app:shimmer_demo_child_count="8"
+        app:shimmer_demo_grid_child_count="4"
+        app:shimmer_demo_layout="@layout/shimmer_kategori_menu"
+        app:shimmer_demo_layout_manager_type="grid" />
+
+</LinearLayout>

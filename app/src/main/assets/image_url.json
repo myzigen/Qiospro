@@ -1,0 +1,25 @@
+{
+  "images": {
+    "1" : {
+      "imageUrl": "https://101internet.id/cdn/shop/files/cbn_9f42b204-5417-43bb-895f-2d7ab833345b.png?v=1713079995"
+    },
+   "2" : {
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk9xZHBnphfv0nSGUPsso1oHw04gQLjnwhAg&usqp=CAU"
+    },
+    "3" : {
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm6kLXOhsXC8EfJZ0PWK9bOHVr5DgJDf5qwA&usqp=CAU"
+    },
+   "4" : {
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm6kLXOhsXC8EfJZ0PWK9bOHVr5DgJDf5qwA&usqp=CAU"
+    },
+   "5" : {
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW2ov-H_JgWTtI8EWbXWt3rc-zl--DGNtwbUbX3efq1kbsKjr6L7O-6dc&s=10"
+    },
+   "6" : {
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1jzO8jsWWfi7NDU9ZrkJEHMDZeB6kkavGY3SPGbPAt3q-VG-4E-xPBm8&s=10"
+    },
+    "7" :{
+      "imageUrl": "https://example.com/gopay_logo.png"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#e9e9e9"
+    android:orientation="vertical"
+    android:paddingBottom="14dp"
+    android:paddingTop="18dp" >
+
+    <FrameLayout
+		android:id="@+id/container"
+		app:layout_behavior="@string/bottom_sheet_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <com.mhr.mobile.widget.input.KeyboardNumber
+            android:id="@+id/keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp" >
+
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:tint="#e9e9e9" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="15dp"
+        app:strokeColor="#e9e9e9" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp" >
+
+            <ImageView
+                android:id="@+id/logoProvider"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="14dp" />
+
+            <TextView
+                android:id="@+id/produkName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/logoProvider"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textDetailProduk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/produkName"
+                android:layout_marginBottom="14dp"
+                android:layout_toEndOf="@id/logoProvider" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="2.4dp"
+                android:layout_below="@id/textDetailProduk"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border_line_dashed" />
+
+            <TextView
+                android:id="@+id/lblHarga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/divider"
+                android:text="Harga" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/divider"
+                android:text="Rp10.000"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/expandable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput"
+                style="?attr/textInputOutlinedDenseStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:hint="No.Hp"
+                app:boxStrokeErrorColor="@color/status_canceled"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeWidthFocused="1dp"
+                app:endIconMode="custom"
+				app:endIconDrawable="@drawable/pick_contact"
+                app:errorTextColor="@color/status_canceled"
+                app:expandedHintEnabled="false" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="083xxxxxxxxx"
+                    android:inputType="number"
+                    android:maxLength="13"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.mhr.mobile.widget.input.KeyboardNumber
+                android:id="@+id/keyboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp" />
+        </LinearLayout>
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAktivasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:padding="14dp"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/qiospay_blue_dop" />
+
+</LinearLayout>

@@ -1,0 +1,117 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="18dp"
+        android:hint="Nominal"
+        app:expandedHintEnabled="false"
+        app:placeholderText="0"
+        app:prefixText="Rp" >
+
+        <com.mhr.mobile.widget.input.RupiahEditText
+            android:id="@+id/editext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <include
+        android:id="@+id/include"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/input"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        layout="@layout/expandable_check_user" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnPilihBank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerview"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        app:cardBackgroundColor="@color/white"
+        app:strokeColor="@color/qiospay_stroke_card"
+        app:strokeWidth="1dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp" >
+
+            <com.mhr.mobile.widget.imageview.RoundedImageView
+                android:id="@+id/logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+				android:src="@drawable/atm"
+                android:scaleType="centerCrop"
+                app:radius="8dp" />
+
+            <TextView
+                android:id="@+id/tvNamaBank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/logo"
+                android:layout_toEndOf="@id/logo"
+                android:text="Pengisian"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/logo"
+                android:layout_below="@id/tvNamaBank"
+                android:layout_toEndOf="@id/logo"
+                android:text="Pilih Metode Pembayaran"
+                android:textColor="@color/colorTextLight" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.mhr.mobile.widget.input.KeyboardNumber
+        android:id="@+id/keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btnPembayaran"
+        android:layout_marginBottom="14dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnPembayaran"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="30dp"
+        app:strokeColor="@color/qiospay_blue_dop" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center|center_horizontal"
+            android:padding="14dp"
+            android:text="Lanjut Pembayaran"
+            android:textStyle="bold" />
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>
