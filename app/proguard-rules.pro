@@ -20,6 +20,11 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+-dontwarn com.google.gson.**
+-keep class com.google.gson.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+
 # Aturan dasar ProGuard
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
