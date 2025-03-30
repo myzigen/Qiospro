@@ -14,5 +14,4 @@ public class Config {
   public static final String CBN_LOGO =
       "https://101internet.id/cdn/shop/files/cbn_9f42b204-5417-43bb-895f-2d7ab833345b.png?v=1713079995";
 	  public static final String NO_IMAGE = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiyOpUf0BRE9QI_3NLp_aDiZSoxhkpw686bctSE3Sdv33Ashod3ZPV548&s=10";
-	  public static final String midtransKey = "SB-Mid-server-aC3MZX99rbWKWGC5fwL6bR0J";
 }

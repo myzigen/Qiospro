@@ -4,7 +4,6 @@ import android.app.Activity;
 import com.mhr.mobile.manage.client.MidtransClient;
 import com.mhr.mobile.manage.response.MidtransResponse;
 import java.util.Base64;
-import com.mhr.mobile.util.Config;
 
 public class MidtransRequest {
   public Activity activity;
@@ -41,7 +40,7 @@ public class MidtransRequest {
   }
 
   public String getAuthHeader() {
-    String serverKey = Config.midtransKey;
+    String serverKey = "SB-Mid-server-aC3MZX99rbWKWGC5fwL6bR0J";
     return "Basic " + Base64.getEncoder().encodeToString(serverKey.getBytes());
   }
 

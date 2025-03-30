@@ -2,6 +2,7 @@ package com.mhr.mobile;
 
 import android.app.Application;
 import android.content.Context;
+import androidx.work.Configuration;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
@@ -21,9 +22,10 @@ public class MyApp extends Application {
   @Override
   public void onCreate() {
     super.onCreate();
-	
+
     appContext = getApplicationContext();
-    //cleanCache();
+    // cleanCache();
+    //WorkManager.initialize(this, new Configuration.Builder().build());
 
     OneSignal.initWithContext(this, APP_ID);
     OneSignal.getNotifications().requestPermission(false, Continue.none());
@@ -34,8 +36,10 @@ public class MyApp extends Application {
     mNetworkMonitoringUtil.registerNetworkCallbackEvents(); // Daftarkan callback
   }
 
+
   public void cleanCache() {
-    WorkRequest cleanCacheWork = new PeriodicWorkRequest.Builder(CacheCleanupWorker.class, 90, TimeUnit.MINUTES).build();
+    WorkRequest cleanCacheWork =
+        new PeriodicWorkRequest.Builder(CacheCleanupWorker.class, 90, TimeUnit.MINUTES).build();
     WorkManager.getInstance(this).enqueue(cleanCacheWork);
   }
 
@@ -70,6 +74,5 @@ public class MyApp extends Application {
                 }
               }
             });
-
   */
 }

@@ -16,7 +16,6 @@ import com.mhr.mobile.databinding.MenuPulsaBinding;
 import com.mhr.mobile.loader.DigiflazzLoader;
 import com.mhr.mobile.manage.response.PricelistDigiflazzResponse;
 import com.mhr.mobile.ui.inject.InjectionActivity;
-import com.mhr.mobile.ui.sheet.BottomSheetDetailPembelian;
 import com.mhr.mobile.ui.sheet.SheetDetailPembelian;
 import com.mhr.mobile.util.AndroidViews;
 import com.mhr.mobile.util.FormatUtils;
@@ -76,20 +75,21 @@ public class MenuPulsa extends InjectionActivity implements TextWatcher {
     btn.setOnClickListener(
         v -> {
           String nomor = binding.etPhoneNumber.getText().toString();
-		  String providerId = ProviderUtils.detectProvider(binding.etPhoneNumber.getText().toString());
-		  int iconResId = ProviderUtils.getProviderIconResId(providerId);
-		  SheetDetailPembelian sheet = SheetDetailPembelian.newInstance(pilihProduk);
-		  sheet.setNomor(nomor);
-		  sheet.setBrand(pilihProduk.getBrand());
-		  sheet.setProdukCode(pilihProduk.getBuyerSkuCode());
-		  sheet.setHarga(pilihProduk.getHargaDiskon());
-		  sheet.setTypeApi(pilihProduk.getTypeApi());
-		  sheet.setIcon(iconResId);
-		  sheet.setProdukName(pilihProduk.getProductName());
-		  sheet.show(getSupportFragmentManager());
+          String providerId =
+              ProviderUtils.detectProvider(binding.etPhoneNumber.getText().toString());
+          int iconResId = ProviderUtils.getProviderIconResId(providerId);
+          SheetDetailPembelian sheet = SheetDetailPembelian.newInstance(pilihProduk);
+          sheet.setNomor(nomor);
+          sheet.setBrand(pilihProduk.getBrand());
+          sheet.setProdukCode(pilihProduk.getBuyerSkuCode());
+          sheet.setHarga(pilihProduk.getHargaDiskon());
+          sheet.setTypeApi(pilihProduk.getTypeApi());
+          sheet.setIcon(iconResId);
+          sheet.setProdukName(pilihProduk.getProductName());
+          sheet.show(getSupportFragmentManager());
         });
   }
- 
+
   private void initUi() {
     preferences = new QiosPreferences(this);
     digiflazzLoader = new DigiflazzLoader(this);
@@ -200,7 +200,7 @@ public class MenuPulsa extends InjectionActivity implements TextWatcher {
 
   private void loadPricelist(String provider) {
     if (!mData.isEmpty()) {
-	      // Filter produk berdasarkan provider jika data sudah ada
+      // Filter produk berdasarkan provider jika data sudah ada
       List<PricelistDigiflazzResponse.Data> filteredData = getFilterProduk(provider);
       perbaruiRecyclerview(filteredData);
       return;

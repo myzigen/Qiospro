@@ -1,13 +1,21 @@
 package com.mhr.mobile;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mhr.mobile.databinding.ActivityMainBinding;
 import com.mhr.mobile.ui.content.ContentNotification;
+import com.mhr.mobile.ui.dialog.PopupDialog;
 import com.mhr.mobile.ui.navigation.BottomNavPagerAdapter;
 import com.mhr.mobile.widget.viewpager.GestureControlViewPager;
 import com.onesignal.OneSignal;
@@ -36,12 +45,32 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
   private String userId;
   private long confirmBackPress;
   private Toast toast;
+  // Variabel izin
+  private ActivityResultLauncher<String> requestPermissionLauncher;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     binding = ActivityMainBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
+
+    // Inisialisasi izin
+    requestPermissionLauncher =
+        registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+              if (!isGranted) {
+                showPermissionDeniedDialog();
+              } else {
+                recreate();
+              }
+            });
+
+    checkGalleryPermission();
+
+    PopupDialog popupDialog = new PopupDialog();
+    popupDialog.show(getSupportFragmentManager(), "TAG");
+
     viewPager = binding.viewpager;
     bottomNavigationView = binding.bottomNavigationMenu;
     // toolbar.setVisibility(View.GONE);
@@ -207,9 +236,97 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
     confirmBackPress = System.currentTimeMillis();
   }
+
+  // Cek izin galeri
+  private void checkGalleryPermission() {
+    String permission =
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+            ? Manifest.permission.READ_MEDIA_IMAGES
+            : Manifest.permission.READ_EXTERNAL_STORAGE;
+
+    if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+      requestPermissionLauncher.launch(permission);
+    }
+  }
+
+  // Tampilkan dialog jika izin ditolak
+  private void showPermissionDeniedDialog() {
+    new AlertDialog.Builder(this)
+        .setTitle("Izin Diperlukan")
+        .setMessage("Aplikasi ini memerlukan izin " + " melanjutkan.")
+        .setPositiveButton(
+            "OK",
+            new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                checkGalleryPermission();
+              }
+            })
+        .setCancelable(false)
+        .show();
+  }
 }
 
 /*
+
+import android.Manifest;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+
+// Variabel izin
+private ActivityResultLauncher<String> requestPermissionLauncher;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    binding = ActivityMainBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
+
+    // Inisialisasi izin
+    requestPermissionLauncher = registerForActivityResult(
+        new ActivityResultContracts.RequestPermission(),
+        isGranted -> {
+            if (!isGranted) {
+                showPermissionDeniedDialog();
+            }
+        });
+
+    checkGalleryPermission();
+}
+
+// Cek izin galeri
+private void checkGalleryPermission() {
+    String permission = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+        ? Manifest.permission.READ_MEDIA_IMAGES
+        : Manifest.permission.READ_EXTERNAL_STORAGE;
+
+    if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+        requestPermissionLauncher.launch(permission);
+    }
+}
+
+// Tampilkan dialog jika izin ditolak
+private void showPermissionDeniedDialog() {
+    new AlertDialog.Builder(this)
+        .setTitle("Izin Diperlukan")
+        .setMessage("Aplikasi ini memerlukan izin untuk mengakses galeri. Harap izinkan akses untuk melanjutkan.")
+        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                checkGalleryPermission();
+            }
+        })
+        .setCancelable(false)
+        .show();
+}
+
+
+//
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.toolbar_menu, menu);
