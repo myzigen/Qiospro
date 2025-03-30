@@ -1,0 +1,60 @@
+name: Build APK with Custom App Name and Package
+
+on:
+  repository_dispatch:
+    types: [build_apk]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Check Dependencies (Gson)
+        run: |
+          ./gradlew dependencies --configuration implementation | grep "gson" || echo "No Gson found"
+
+      - name: Update App Name and Package
+        run: |
+          USER_ID="${{ github.event.client_payload.user_id }}"
+          APP_NAME="${{ github.event.client_payload.app_name }}"
+          PACKAGE_NAME="${{ github.event.client_payload.package_name }}"
+          BUILD_ID="${{ github.event.client_payload.build_id }}"
+          echo "Updating app name to: $APP_NAME"
+          echo "Updating package name to: $PACKAGE_NAME"
+          sed -i "s/<string name=\"app_name\">.*<\/string>/<string name=\"app_name\">$APP_NAME<\/string>/g" app/src/main/res/values/strings.xml
+          sed -i "s/applicationId \".*\"/applicationId \"$PACKAGE_NAME\"/g" app/build.gradle
+          OLD_PACKAGE=$(grep -oP 'applicationId "\K[^"]+' app/build.gradle)
+          OLD_DIR="app/src/main/java/$(echo $OLD_PACKAGE | tr . /)"
+          NEW_DIR="app/src/main/java/$(echo $PACKAGE_NAME | tr . /)"
+          echo "OLD_PACKAGE: $OLD_PACKAGE"
+          echo "OLD_DIR: $OLD_DIR"
+          echo "NEW_DIR: $NEW_DIR"
+          if [ -d "$OLD_DIR" ]; then
+            mkdir -p "$NEW_DIR"
+            mv "$OLD_DIR"/* "$NEW_DIR" || true
+            rm -rf "$OLD_DIR"
+          else
+            echo "WARNING: OLD_DIR not found, skipping folder rename."
+          fi
+          sed -i "s/package=\"$OLD_PACKAGE\"/package=\"$PACKAGE_NAME\"/g" app/src/main/AndroidManifest.xml
+          find app/src/main/java -type f -name "*.kt" -or -name "*.java" | xargs sed -i "s/$OLD_PACKAGE/$PACKAGE_NAME/g"
+
+      - name: Build APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-${{ github.event.client_payload.build_id }}
+          path: app/build/outputs/apk/release/app-release.apk
