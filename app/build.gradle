@@ -36,9 +36,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation( 'com.squareup.retrofit2:converter-gson:2.10.1') {
-        exclude group: 'com.google.code.gson', module: 'gson'
-    }
+    implementation 'com.squareup.retrofit2:converter-gson:2.10.1'
     implementation 'androidx.appcompat:appcompat:1.7.0-alpha03'
     implementation 'com.google.android.material:material:1.12.0-alpha03'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.0-alpha13'	
